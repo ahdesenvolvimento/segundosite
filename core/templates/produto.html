@@ -1,0 +1,48 @@
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    {% bootstrap_css %}
+</head>
+<body>
+    <div class="header">
+        <header>
+            <div class="linha">
+                <div class="coluna col4">
+                    <h1>Hello world!</h1>
+                </div>
+                <div class="coluna col8">
+                    <nav>
+                        <li><a href="{% url 'index' %}">home</a></li>
+                        <li><a href="{% url 'contato' %}">contato</a></li>
+                        <li><a href="{% url 'produto' %}">produtos</a></li>
+                    </nav>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="linha">
+        <section>
+            <div class="coluna col12">
+                {% bootstrap_messages %}
+                <form action="{% url 'produto' %}" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+                    {% endbuttons %}
+
+                </form>
+            </div>
+        </section>
+    </div>
+    {% bootstrap_javascript jquery='full' %}
+
+</body>
+</html>
